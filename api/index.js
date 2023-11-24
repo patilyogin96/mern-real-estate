@@ -2,8 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const routes = require("./routes/index.route");
+const cookieParser = require("cookie-parser");
 dotenv.config();
 const app = express();
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -12,6 +14,7 @@ mongoose
   .catch((err) => console.log("DBERR", err));
 
 app.use(express.json()); //to parse incomming requests with json payloads
+app.use(cookieParser());
 
 app.use(routes);
 
