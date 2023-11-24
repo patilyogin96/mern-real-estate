@@ -11,13 +11,7 @@ mongoose
   })
   .catch((err) => console.log("DBERR", err));
 
-// const db = mongoose.connection;
-
-// db.on("error", console.error.bind(console, "Error connecting to MongoDB"));
-
-// db.once("open", function () {
-//   console.log("Connected to Database :: MongoDB");
-// });
+app.use(express.json()); //to parse incomming requests with json payloads
 
 app.use(routes);
 
