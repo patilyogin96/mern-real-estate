@@ -4,8 +4,8 @@
   "description": "merm-real-estate-backend",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "author": "yogin",
   "license": "ISC",
