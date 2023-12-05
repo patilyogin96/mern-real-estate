@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GoogleOauth from "../components/GoogleOauth/GoogleOauth";
 
 const SignIn = () => {
   return (
@@ -19,7 +20,8 @@ const SignIn = () => {
         <button className="p-3 rounded-lg bg-slate-600 text-white  uppercase hover:opacity-95 disabled:opacity-75">
           Sign in
         </button>
-        <div>Google Auth</div>
+
+        <GoogleOauth />
       </form>
 
       <div>

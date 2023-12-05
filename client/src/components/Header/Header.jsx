@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
   return (
@@ -20,7 +21,7 @@ const Header = () => {
           </span>
         </div>
         <div>
-          <ul className="flex justify-between gap-4 ">
+          <ul className="hidden  md:flex justify-between gap-4 ">
             <li>
               {" "}
               <Link to="/">Home</Link>
@@ -33,6 +34,9 @@ const Header = () => {
               <Link to="sign-in ">Sign in</Link>
             </li>
           </ul>
+          <div className=" md:hidden">
+            <GiHamburgerMenu className="w-[20px] h-[20px]" />
+          </div>
         </div>
       </div>
     </header>
