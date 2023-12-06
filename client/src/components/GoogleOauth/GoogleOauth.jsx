@@ -9,12 +9,12 @@ const GoogleOauth = () => {
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
-      console.log("GOOGLEAUTH" , result);
-    //   const apiAuthData = {
-    //     name: result?.user?.displayName,
-    //     email: result?.user?.email,
-    //     photo: result?.user?.photoURL,
-    //   };
+      console.log("GOOGLEAUTH", result);
+      //   const apiAuthData = {
+      //     name: result?.user?.displayName,
+      //     email: result?.user?.email,
+      //     photo: result?.user?.photoURL,
+      //   };
     } catch (error) {}
   };
 

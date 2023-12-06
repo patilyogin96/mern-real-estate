@@ -6,6 +6,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { app } from "../firebase";
+import { open_api } from "../utils/network";
 
 const AddProperty = () => {
   const [formData, setFormData] = useState({
@@ -25,10 +26,15 @@ const AddProperty = () => {
   const [loading, setloading] = useState(false);
   const [imageUploadError, setimageUploadError] = useState([]);
   const [error, setError] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // api call
     // on success, show success message
+    try {
+      const newProperty = await open_api.post(`v1/listing/add` , formData);
+
+      console.log("NEwPropertAdded", newProperty);
+    } catch (error) {}
   };
 
   const handleImageSubmit = () => {
