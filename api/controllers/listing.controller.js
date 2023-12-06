@@ -5,6 +5,9 @@ exports.addProperty = async (req, res, next) => {
   try {
     const addNewProperty = await Listing.create(req.body);
     console.log("NEWPROP", addNewProperty);
-  } catch (error) {}
+    return res.status(201).json(addNewProperty);
+  } catch (error) {
+    console.log("CatchError", error);
+  }
 };
 exports.getAllListing = (req, res, next) => {};

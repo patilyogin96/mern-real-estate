@@ -36,7 +36,7 @@ const listingSchema = new mongoose.Schema(
     },
     parking: {
       type: Boolean,
-      required: true,
+      required: true,  
     },
     type: {
       type: String,
@@ -50,10 +50,10 @@ const listingSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
-    userRef: {
-      type: String,
-      required: true,
-    },
+    // userRef: {
+    //   type: String,
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );
