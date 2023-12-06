@@ -20,6 +20,9 @@ const AddProperty = () => {
     regularPrice: "",
     type: "",
     imageUrls: [],
+    offer: false,
+    parking: false,
+    furnished: false,
   });
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -31,7 +34,7 @@ const AddProperty = () => {
     // api call
     // on success, show success message
     try {
-      const newProperty = await open_api.post(`v1/listing/add` , formData);
+      const newProperty = await open_api.post(`v1/listing/add`, formData);
 
       console.log("NEwPropertAdded", newProperty);
     } catch (error) {}
