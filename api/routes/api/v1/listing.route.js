@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getAllListing,
+  getAllListings,
   addProperty,
 } = require("../../../controllers/listing.controller");
 
-router.get("/", getAllListing);
+router.get("/", getAllListings);
 
 // only admins can add property
 router.post("/add", addProperty);

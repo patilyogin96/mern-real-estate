@@ -10,4 +10,9 @@ exports.addProperty = async (req, res, next) => {
     console.log("CatchError", error);
   }
 };
-exports.getAllListing = (req, res, next) => {};
+exports.getAllListings = async (req, res, next) => {
+  try {
+    const fetchList = await Listing.find({});
+    return res.status(200).json(fetchList);
+  } catch (error) {}
+};
