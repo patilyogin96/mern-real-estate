@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { signOut } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { signOutSucess } from "../../redux/user/userSlice";
 
-const Header = ({currentUser}) => {
-  console.log("APPP" , currentUser);
-  const [ifLogIn, setIfLogIn] = useState(currentUser ? true : false);
+const Header = ({}) => {
+  const { loading, error, currentUser } = useSelector((state) => state?.user);
+  console.log("APPP", currentUser);
+  const dispatch = useDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
-  const handleUserClick = () => {
+  const handleUserClick = (url) => {
+    if (url === "logout") {
+      dispatch(signOutSucess());
+    }
     setIsOpen(false);
   };
 
-  const SucessLoginIn = ({user}) => {
+  const SucessLoginIn = ({ user }) => {
     return (
       <div className="relative">
         <button
@@ -24,8 +32,8 @@ const Header = ({currentUser}) => {
           <div className="bg-white absolute p-2">
             {dropDown.map((item, index) => (
               <div
-                onClick={handleUserClick}
-                className="hover:bg-slate-400 "
+                onClick={() => handleUserClick(item?.url)}
+                className="hover:bg-slate-400 hover:text-white"
                 key={index}
               >
                 {item?.title}
@@ -63,7 +71,7 @@ const Header = ({currentUser}) => {
             </li>
             <li>
               {" "}
-              {!ifLogIn ? (
+              {!currentUser ? (
                 <Link to="sign-in ">Sign in</Link>
               ) : (
                 <SucessLoginIn user={currentUser?.full_name} />

@@ -6,3 +6,9 @@ body {
   background-color: rgb(241, 245, 241);
   /* overflow-y: hidden; */
 }
+
+.validateFields {
+  color: red;
+  margin-top: -10px;
+  margin-left: 10px;
+}

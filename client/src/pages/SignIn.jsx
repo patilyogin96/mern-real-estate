@@ -75,8 +75,11 @@ const SignIn = () => {
         <GoogleOauth />
       </form>
 
-      <div>
-        Don't have an Account ? <Link to="/sign-up">Sign up</Link>
+      <div className="mt-3 text-center">
+        Don't have an Account ?{" "}
+        <Link to="/sign-up" className="hover:text-blue-500">
+          Sign up
+        </Link>
       </div>
     </div>
   );

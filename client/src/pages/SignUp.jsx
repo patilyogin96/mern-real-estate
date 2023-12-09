@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { open_api } from "../utils/network";
+import GoogleOauth from "../components/GoogleOauth/GoogleOauth";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -12,19 +13,68 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+
+  const validate = () => {
+    const errors = {
+      error: false,
+    };
+    const { email, firstName, lastName, password, confirmPassword } = formdata;
+
+    if (!email) {
+      errors.email = "Please enter email";
+      errors.error = true;
+    }
+
+    if (!firstName) {
+      errors.firstName = "Please enter First Name";
+      errors.error = true;
+    }
+
+    if (!lastName) {
+      errors.lastName = "Please enter Last Name";
+      errors.error = true;
+    }
+
+    if (!password) {
+      errors.password = "Please enter Password";
+      errors.error = true;
+    }
+
+    if (confirmPassword) {
+      errors.confirmPassword = "Please enter Password again";
+      errors.error = true;
+    }
+
+    setFormErrors(errors);
+
+    console.log("Data", errors);
+    return errors;
+  };
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
 
+    let validateForm = validate();
+    if (validateForm.error) return;
+
     try {
+      setLoading(true);
       const signupResponse = await open_api.post(`v1/auth/sign-up`, {
         ...formdata,
         full_name: `${formdata?.firstName || ""}  ${formdata?.lastName || ""}`,
       });
       console.log("SIgnuPREsponse", signupResponse);
       // after success full sign-up redirect to sign-in page
-      navigate("/sign-in");
-    } catch (error) {}
+      if (signupResponse?.status === "201") {
+        navigate("/sign-in");
+        return;
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -42,11 +92,16 @@ const SignUp = () => {
         <input
           type="text"
           placeholder="Enter first name"
-          className="p-3 rounded-lg capitalize"
+          className={`p-3 rounded-lg capitalize ${
+            formErrors?.firstName ? "border border-solid border-red-600" : ""
+          } `}
           name="firstName"
           value={formdata?.firstName}
           onChange={handleChange}
         />
+        {formErrors?.firstName && (
+          <small className="validateFields">{formErrors?.firstName}</small>
+        )}
         <input
           type="text"
           placeholder="Enter last name"
@@ -87,13 +142,16 @@ const SignUp = () => {
           value={formdata?.confirmPassword}
           onChange={handleChange}
         />
-        <button className="p-3 rounded-lg bg-slate-600 text-white  uppercase hover:opacity-95 disabled:opacity-75">
+        <button
+          disabled={loading}
+          className="p-3 rounded-lg bg-slate-600 text-white  uppercase hover:opacity-95 disabled:opacity-75"
+        >
           Sign Up
         </button>
-        <div>Google Auth</div>
+        <GoogleOauth />
       </form>
 
-      <div>
+      <div className="mt-3 text-center hover:text-blue-500">
         Don't have an Account ? <Link to="/sign-up">Sign up</Link>
       </div>
     </div>

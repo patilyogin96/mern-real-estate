@@ -23,7 +23,11 @@ const userSlice = createSlice({
       state.loading = false;
     },
     signOutStart: (state, action) => {},
-    signOutSucess: (state, action) => {},
+    signOutSucess: (state, action) => {
+      state.currentUser = null;
+      state.loading = null;
+      state.error = null;
+    },
     signOutFail: (state, action) => {},
   },
 });
