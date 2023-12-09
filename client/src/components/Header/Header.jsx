@@ -3,21 +3,22 @@ import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-const Header = () => {
-  const [ifLogIn, setIfLogIn] = useState(false);
+const Header = ({currentUser}) => {
+  console.log("APPP" , currentUser);
+  const [ifLogIn, setIfLogIn] = useState(currentUser ? true : false);
   const [isOpen, setIsOpen] = useState(false);
   const handleUserClick = () => {
     setIsOpen(false);
   };
 
-  const SucessLoginIn = () => {
+  const SucessLoginIn = ({user}) => {
     return (
       <div className="relative">
         <button
           className="bg-slate-600 hover:bg-slate-500 shadow-sm  text-white px-2 py-1 rounded-[5px]"
           onClick={() => setIsOpen((prev) => !prev)}
         >
-          Yogin Patil
+          {user}
         </button>
         {isOpen && (
           <div className="bg-white absolute p-2">
@@ -65,7 +66,7 @@ const Header = () => {
               {!ifLogIn ? (
                 <Link to="sign-in ">Sign in</Link>
               ) : (
-                <SucessLoginIn />
+                <SucessLoginIn user={currentUser?.full_name} />
               )}
             </li>
           </ul>

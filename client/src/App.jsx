@@ -7,11 +7,14 @@ import Header from "./components/Header/Header";
 import SignUp from "./pages/SignUp";
 import AddProperty from "./pages/AddProperty";
 import Footer from "./pages/Footer";
+import { useSelector } from "react-redux";
 
 export default function App() {
+  const { currentUser, loading } = useSelector((state) => state?.user);
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header currentUser={currentUser} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

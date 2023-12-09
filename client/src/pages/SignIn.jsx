@@ -2,22 +2,37 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleOauth from "../components/GoogleOauth/GoogleOauth";
 import { open_api } from "../utils/network";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInFail,
+  signInStart,
+  signInSuccess,
+} from "../redux/user/userSlice";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { currentUser, error, loading } = useSelector((state) => state?.user);
+  console.log("USerStore", currentUser, error, loading);
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleSignIn = async (e) => {
+    dispatch(signInStart());
     e.preventDefault();
     // validate inputs
-
     try {
       const signInResponse = await open_api.post(`v1/auth/login`, formData);
       console.log("SIgnINs", signInResponse);
       // if login sucess navigate to homepage
-      navigate("/");
+      if (signInResponse?.status === 200) {
+        dispatch(signInSuccess(signInResponse?.data));
+        navigate("/");
+        return;
+      }
+      dispatch(signInFail(signInResponse?.data?.message));
     } catch (error) {
       console.log("LOGERROR", error);
+      dispatch(signInFail(error?.message));
     }
   };
 
@@ -49,9 +64,13 @@ const SignIn = () => {
           value={formData?.password}
           onChange={handleChange}
         />
-        <button className="p-3 rounded-lg bg-slate-600 text-white  uppercase hover:opacity-95 disabled:opacity-75">
+        <button
+          disabled={loading}
+          className="p-3 rounded-lg bg-slate-600 text-white  uppercase hover:opacity-95 disabled:opacity-75"
+        >
           Sign in
         </button>
+        {error && <small>{error}</small>}
 
         <GoogleOauth />
       </form>
