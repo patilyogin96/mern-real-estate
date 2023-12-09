@@ -40,8 +40,6 @@ const Home = () => {
         <Link className="text-blue-700 text-lg hover:underline" to="/search">
           Lets Start now...
         </Link>
-
-        <img src={imageUrl || ""} alt="image" />
       </div>
 
       <Swiper navigation={true}>
@@ -67,7 +65,36 @@ const Home = () => {
         </SwiperSlide>
       </Swiper>
       <div className="max-w-6xl mx-auto  py-20 px-2">
-        <h1 className="font-semibold text-2xl md:text-4xl">Recent Offers</h1>
+        <h1 className="font-semibold text-2xl md:text-4xl">
+          Trending places for sell
+        </h1>
+        <div className="flex flex-col gap-4 md:flex-row flex-wrap py-4">
+          {listData?.length > 0 &&
+            listData?.map((item) => {
+              const {
+                name,
+                description,
+                address,
+                discountPrice,
+                regularPrice,
+                imageUrls,
+              } = item;
+              return (
+                <CardItem
+                  title={name}
+                  description={description}
+                  address={address}
+                  price={regularPrice}
+                  image={imageUrls[0]}
+                />
+              );
+            })}
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto   px-2">
+        <h1 className="font-semibold text-2xl md:text-4xl">
+          Trending places for Rent
+        </h1>
         <div className="flex flex-col gap-4 md:flex-row flex-wrap py-4">
           {listData?.length > 0 &&
             listData?.map((item) => {
