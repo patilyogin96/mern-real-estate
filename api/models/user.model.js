@@ -6,11 +6,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+    // username: {
+    //   type: String,
+    //   required: true,
+    //   unique: true,
+    // },
     email: {
       type: String,
       required: true,
@@ -32,4 +32,4 @@ const userSchema = new mongoose.Schema(
 const User = mongoose.model("User", userSchema);
 
 // export default User;
-module.exports = User
+module.exports = User;
