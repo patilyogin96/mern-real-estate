@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="px-2 py-28 flex flex-col gap-2 max-w-6xl m-auto">
+      <div className="px-2 py-28 flex flex-col gap-2 max-w-6xl m-auto  ">
         <h1 className="text-slate-700 lg:text-6xl text-3xl font-bold ">
           Find a home you will love with ease
         </h1>

@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
-  const [ifLogIn, setIfLogIn] = useState(true);
+  const [ifLogIn, setIfLogIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const handleUserClick = () => {
     setIsOpen(false);
