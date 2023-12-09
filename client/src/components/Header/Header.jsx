@@ -1,9 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
+  const [ifLogIn, setIfLogIn] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleUserClick = () => {
+    setIsOpen(false);
+  };
+
+  const SucessLoginIn = () => {
+    return (
+      <div className="relative">
+        <button
+          className="bg-slate-600 hover:bg-slate-500 shadow-sm  text-white px-2 py-1 rounded-[5px]"
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          Yogin Patil
+        </button>
+        {isOpen && (
+          <div className="bg-white absolute p-2">
+            {dropDown.map((item, index) => (
+              <div
+                onClick={handleUserClick}
+                className="hover:bg-slate-400 "
+                key={index}
+              >
+                {item?.title}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
   return (
     <header className="bg-slate-200 shadow-md ">
       <div className="flex justify-between items-center max-w-6xl m-auto p-3 ">
@@ -31,7 +62,11 @@ const Header = () => {
             </li>
             <li>
               {" "}
-              <Link to="sign-in ">Sign in</Link>
+              {!ifLogIn ? (
+                <Link to="sign-in ">Sign in</Link>
+              ) : (
+                <SucessLoginIn />
+              )}
             </li>
           </ul>
           <div className=" md:hidden">
@@ -44,3 +79,14 @@ const Header = () => {
 };
 
 export default Header;
+
+const dropDown = [
+  {
+    title: "Profile",
+    url: "profile",
+  },
+  {
+    title: "Logout",
+    url: "logout",
+  },
+];
