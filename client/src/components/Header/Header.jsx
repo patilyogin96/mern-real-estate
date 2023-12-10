@@ -48,7 +48,7 @@ const Header = ({}) => {
     <header className="bg-slate-200 shadow-md ">
       <div className="flex justify-between items-center max-w-6xl m-auto p-3 ">
         <div>
-          <Link to="/">Yogin Estate</Link>
+          <Link to="/">Home Bricks</Link>
         </div>
         <div className="flex items-center relative">
           <input

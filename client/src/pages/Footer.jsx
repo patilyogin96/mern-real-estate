@@ -9,7 +9,7 @@ const Footer = () => {
             Yogin's Estate
           </h1>
           <p className="pt-3 text-lg max-w-lg lg:text-start">
-            "Welcome to Yogin's Estate, where your dream home awaits! Discover
+            "Welcome to Home Bricks, where your dream home awaits! Discover
             exceptional real estate services for buying, selling, and renting.
             Your perfect property journey begins here."
           </p>
