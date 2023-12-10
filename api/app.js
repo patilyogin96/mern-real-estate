@@ -5,6 +5,8 @@ const routes = require("./routes/index.route");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 dotenv.config();
+const path = require("path");
+
 const app = express();
 
 app.use(cors());
@@ -16,10 +18,14 @@ mongoose
   })
   .catch((err) => console.log("DBERR", err));
 
+const __dirname = path.resolve();
+
 app.use(express.json()); //to parse incomming requests with json payloads
 app.use(cookieParser());
 
 app.use(routes);
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
 
 app.listen(5000, () => {
   console.log("SERVER STARTED");
