@@ -2,10 +2,10 @@
   "name": "mern-real-estate-backend",
   "version": "1.0.0",
   "description": "merm-real-estate-backend",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js"
+    "dev": "nodemon api/app.js",
+    "start": "node api/app.js"
   },
   "author": "yogin",
   "license": "ISC",
