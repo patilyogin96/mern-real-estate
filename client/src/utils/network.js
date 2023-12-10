@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const base_url = "http://localhost:5000/api/";
+export const base_url = "https://yoginhomebricks.onrender.com/api/";
 
 export const open_api = axios.create({
   baseURL: base_url,
