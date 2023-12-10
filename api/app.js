@@ -19,16 +19,14 @@ mongoose
   })
   .catch((err) => console.log("DBERR", err));
 
-
-
 app.use(express.json()); //to parse incomming requests with json payloads
 app.use(cookieParser());
 
 app.use(routes);
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
+app.use(express.static(path.join(__dirname, "/client/dist")));
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("SERVER STARTED");
 });
 
