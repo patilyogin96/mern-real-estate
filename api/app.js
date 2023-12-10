@@ -23,11 +23,12 @@ app.use(express.json()); //to parse incomming requests with json payloads
 app.use(cookieParser());
 
 app.use(routes);
+console.log("DIRRRR", path.join(__dirname, "../client", "dist", "index.html"))
 
-app.use(express.static(path.join(__dirname, "/client/dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
 });
 
 app.listen(process.env.PORT || 5000, () => {
