@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 dotenv.config();
 const path = require("path");
+// const __dirname = path.resolve();
 
 const app = express();
 
@@ -18,7 +19,7 @@ mongoose
   })
   .catch((err) => console.log("DBERR", err));
 
-const __dirname = path.resolve();
+
 
 app.use(express.json()); //to parse incomming requests with json payloads
 app.use(cookieParser());
