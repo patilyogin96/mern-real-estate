@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import cardProp1 from "../../assets/realEstateassets/prop2.jpg";
 import { MdLocationOn } from "react-icons/md";
-const CardItem = ({ title, address, description, price, image }) => {
+const CardItem = ({ id, title, address, description, price, image }) => {
   return (
     <div className="bg-white rounded-md w-full sm:w-[320px]">
-      <Link to="/" className="">
+      <Link to={`/property-details/${id}`} className="">
         <img
           src={image}
           alt="image"

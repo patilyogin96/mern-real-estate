@@ -72,6 +72,7 @@ const Home = () => {
           {listData?.length > 0 &&
             listData?.map((item) => {
               const {
+                _id,
                 name,
                 description,
                 address,
@@ -81,6 +82,8 @@ const Home = () => {
               } = item;
               return (
                 <CardItem
+                  key={_id}
+                  id={_id}
                   title={name}
                   description={description}
                   address={address}
@@ -99,6 +102,7 @@ const Home = () => {
           {listData?.length > 0 &&
             listData?.map((item) => {
               const {
+                _id,
                 name,
                 description,
                 address,
@@ -108,6 +112,8 @@ const Home = () => {
               } = item;
               return (
                 <CardItem
+                  key={_id}
+                  id={_id}
                   title={name}
                   description={description}
                   address={address}

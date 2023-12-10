@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import AddProperty from "./pages/AddProperty";
 import Footer from "./pages/Footer";
 import { useSelector } from "react-redux";
+import PropertyDetails from "./pages/PropertyDetails";
 
 export default function App() {
   const { currentUser, loading } = useSelector((state) => state?.user);
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/add-property" element={<AddProperty />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/property-details/:id" element={<PropertyDetails />} />
       </Routes>
       {/* <Footer /> */}
     </BrowserRouter>
