@@ -34,7 +34,7 @@ exports.getAllListings = async (req, res, next) => {
       type = { $in: ["sale", "rent"] };
     }
 
-    const q = req.query.q || "dattani";
+    const q = req.query.q || "";
 
     const fetchList = await Listing.find({
       name: { $regex: q, $options: "i" },
